@@ -1,0 +1,80 @@
+.welcome {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 350px;
+  margin: 90px 24px 24px 24px;
+  box-shadow: 0 4px 24px 0 rgba(44, 101, 144, 0.10);
+}
+
+
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+  padding: 48px 0 48px 48px;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: #111;
+  line-height: 1.1;
+}
+
+.welcome-content p {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin-bottom: 32px;
+}
+
+
+.welcome-sidebox {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin: 48px 48px 0 0;
+  min-width: 300px;
+  max-width: 340px;
+  box-shadow: 0 2px 12px rgba(44, 101, 144, 0.08);
+  align-self: flex-start;
+}
+
+.welcome-sidebox h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.welcome-sidebox ul {
+  list-style: disc inside;
+  color: #3f51b5;
+  font-size: 1.05rem;
+  padding-left: 0;
+}
+
+@media (max-width: 900px) {
+  .welcome {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .welcome-content, .welcome-sidebox {
+    max-width: 100%;
+    padding: 32px;
+    margin: 0;
+  }
+  .welcome-sidebox {
+    margin-top: 24px;
+  }
+}
