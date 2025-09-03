@@ -19,6 +19,7 @@ function OrderPopup() {
         status: 'En attente',
         total: total
     });
+    const [loading, setLoading] = useState(false);
 
     const handleClose = () => {
         setOrder(false);
@@ -30,7 +31,6 @@ function OrderPopup() {
         navigate('/');
     };
 
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -38,7 +38,6 @@ function OrderPopup() {
             [name]: value,
         }));
     };
-
 
     const validateEmail = (email) => {
         // Expression régulière simple pour valider l'email
@@ -52,6 +51,7 @@ function OrderPopup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (loading) return;
         const { name, email, phone } = formData;
         if (!name || !email || !phone) {
             alert('Veuillez remplir tous les champs.');
@@ -65,6 +65,7 @@ function OrderPopup() {
             alert('Veuillez entrer un numéro de téléphone valide.');
             return;
         }
+        setLoading(true);
         try {
             const dataToSend = {
                 name,
@@ -87,6 +88,8 @@ function OrderPopup() {
         } catch (error) {
             console.error('Error submitting order:', error);
             alert('Une erreur est survenue lors de la soumission de la commande.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -98,10 +101,10 @@ function OrderPopup() {
                 <span onClick={handleClose}>x</span>
             </div>
             <form onSubmit={handleSubmit} >
-                <input type="text" id="name" name="name" value={formData.name} required placeholder='Entrez votre nom'onChange={handleChange}/>
-                <input type="email" id="email" name="email" value={formData.email} required placeholder='Entrez votre email'onChange={handleChange}/>
-                <input type="text" id="phone" name="phone" value={formData.phone} required placeholder='Entrez votre téléphone'onChange={handleChange}/>
-                <button type="submit">Commander</button>
+                <input type="text" id="name" name="name" value={formData.name} required placeholder='Entrez votre nom' onChange={handleChange} disabled={loading}/>
+                <input type="email" id="email" name="email" value={formData.email} required placeholder='Entrez votre email' onChange={handleChange} disabled={loading}/>
+                <input type="text" id="phone" name="phone" value={formData.phone} required placeholder='Entrez votre téléphone' onChange={handleChange} disabled={loading}/>
+                <button type="submit" disabled={loading}>{loading ? 'Envoi en cours...' : 'Commander'}</button>
             </form>
         </div>
     </div>

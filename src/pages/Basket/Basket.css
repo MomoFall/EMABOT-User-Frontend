@@ -305,20 +305,3 @@
   .basket-qty button{ width: 36px; height: 36px; }
 }
 
-/* =========================
-   Dark mode auto
-========================= */
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0f1217;
-    --panel:#161a21;
-    --ink:#e9eef8;
-    --muted:#a7b0c6;
-    --border:#222733;
-    --border-2:#2b3240;
-    --shadow: 0 8px 28px rgba(0,0,0,0.35);
-  }
-  .basket-row:hover { background: #1a1f27; }
-  .basket-item-info img{ background:#1b2230; border-color:#263043; }
-  .basket-remove:hover{ color: var(--accent-1); }
-}
