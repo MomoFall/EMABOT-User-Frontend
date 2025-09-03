@@ -1,4 +1,4 @@
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar2 from '../../components/Navbar2/Navbar2';
 import OrderPopup from '../../components/OrderPopup/OrderPopup';
 import { useStore } from '../../components/StoreContext/StoreContext'
 import './Basket.css'
@@ -17,7 +17,7 @@ function Basket() {
     <>
     
     <div className="basket">
-      <Navbar />
+      <Navbar2 />
       <h2 className="basket-title">Mon panier</h2>
       <div className="basket-content">
         <div className="basket-table">
