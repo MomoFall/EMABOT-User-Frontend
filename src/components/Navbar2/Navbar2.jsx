@@ -19,7 +19,7 @@ function Navbar2() {
     navigate('/basket');
   }
   const handleHome = () => {
-    navigate('/overview');
+    navigate('/');
   }
 
   return (
