@@ -1,28 +1,39 @@
-import { use } from 'react';
 import { Assets } from '../../assets/Assets';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { useStore } from '../StoreContext/StoreContext';
+import { useEffect } from 'react';
 
 function Navbar() {
+
+  const { cartItems } = useStore();
+  const cartItemCount = Object.values(cartItems).reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    console.log("Cart item count:", cartItemCount);
+  }, [cartItemCount]);
 
   const navigate = useNavigate();
 
   const handleBasket = () => {
     navigate('/basket');
   }
+  const handleHome = () => {
+    navigate('/');
+  }
 
   return (
     <div className="navbar">
-      <div className="navbar-logo">
+      <div className="navbar-logo" onClick={handleHome} >
         <img src={Assets.logo} alt="Logo" />
         <span className="navbar-title">EMA Bot</span>
       </div>
       <div className="navbar-links">
-        <p className="active">Accueil</p>
-        <p>Boutique</p>
+        <p className="active" onClick={() => document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' })}>Accueil</p>
+        <p onClick={() => document.getElementById('boutique').scrollIntoView({ behavior: 'smooth' })} >Boutique</p>
         <div className="navbar-cart">
           <img src={Assets.panier} alt="Panier" onClick={handleBasket} />
-          {/*<span className="cart-badge">0</span>*/}
+          {cartItemCount > 0 && <span className="navbar-cart-count">{cartItemCount}</span>}
         </div>
       </div>
     </div>

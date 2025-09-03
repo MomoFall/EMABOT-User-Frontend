@@ -7,13 +7,16 @@ export const StoreContext = createContext();
 export function StoreProvider({ children }) {
 
     const [cartItems, setCartItems] = useState({});
+    const [order, setOrder] = useState(false);
+    const [description, setDescription] = useState(false);
 
 
     const addToCart = (item) => {
-    const key = item.id || item.name; // Utilise l'ID si disponible, sinon le nom
-    setCartItems((prev) => {
-      const prevItem = prev[key];
-      if (prevItem) {
+        console.log("Adding to cart:", item);
+        const key = item.id || item.name; // Utilise l'ID si disponible, sinon le nom
+        setCartItems((prev) => {
+        const prevItem = prev[key];
+        if (prevItem) {
         // Incrémente la quantité
         return {
           ...prev,
@@ -22,17 +25,17 @@ export function StoreProvider({ children }) {
             quantity: prevItem.quantity + 1,
           },
         };
-      } else {
-        // Ajoute l'objet complet avec quantité 1
-        return {
-          ...prev,
-          [key]: {
-            ...item,
-            quantity: 1,
-          },
-        };
-      }
-    });
+        } else {
+            // Ajoute l'objet complet avec quantité 1
+            return {
+            ...prev,
+            [key]: {
+                ...item,
+                quantity: 1,
+            },
+            };
+        }
+        });
   };
 
   const removeFromCart = (item) => {
@@ -65,7 +68,9 @@ export function StoreProvider({ children }) {
 
 
   return (
-    <StoreContext.Provider value={{ addToCart, removeFromCart, clearCart }}>
+    <StoreContext.Provider value={{ addToCart, removeFromCart, clearCart, cartItems,
+        order, setOrder, description, setDescription
+     }}>
       {children}
     </StoreContext.Provider>
   );

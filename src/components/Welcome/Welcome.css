@@ -1,3 +1,4 @@
+
 .welcome {
   position: relative;
   display: flex;
@@ -9,6 +10,7 @@
   min-height: 350px;
   margin: 90px 24px 24px 24px;
   box-shadow: 0 4px 24px 0 rgba(44, 101, 144, 0.10);
+  transition: all 0.3s;
 }
 
 
@@ -18,9 +20,11 @@
   z-index: 1;
   padding: 48px 0 48px 48px;
   max-width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .welcome-content h1 {
@@ -29,12 +33,14 @@
   margin-bottom: 18px;
   color: #111;
   line-height: 1.1;
+  word-break: break-word;
 }
 
 .welcome-content p {
   font-size: 1.25rem;
   color: #4a4a4a;
   margin-bottom: 32px;
+  word-break: break-word;
 }
 
 
@@ -45,10 +51,12 @@
   border-radius: 16px;
   padding: 32px 36px;
   margin: 48px 48px 0 0;
-  min-width: 300px;
+  min-width: 260px;
   max-width: 340px;
+  width: 100%;
   box-shadow: 0 2px 12px rgba(44, 101, 144, 0.08);
   align-self: flex-start;
+  box-sizing: border-box;
 }
 
 .welcome-sidebox h3 {
@@ -64,17 +72,77 @@
   padding-left: 0;
 }
 
+
+@media (max-width: 1200px) {
+  .welcome-content {
+    padding: 36px 0 36px 24px;
+    max-width: 60%;
+  }
+  .welcome-sidebox {
+    margin: 36px 24px 0 0;
+    min-width: 220px;
+    padding: 24px 18px;
+  }
+}
+
 @media (max-width: 900px) {
   .welcome {
     flex-direction: column;
     align-items: stretch;
+    margin: 90px 8px 16px 8px;
   }
   .welcome-content, .welcome-sidebox {
     max-width: 100%;
-    padding: 32px;
+    width: 100%;
+    padding: 24px 12px;
     margin: 0;
+    box-sizing: border-box;
   }
   .welcome-sidebox {
     margin-top: 24px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 20px 10px;
+  }
+  .welcome-content h1 {
+    font-size: 2.1rem;
+  }
+  .welcome-content p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .welcome {
+    margin: 110px 0 8px 0;
+    border-radius: 10px;
+    min-height: 220px;
+    box-shadow: 0 2px 8px 0 rgba(44, 101, 144, 0.08);
+  }
+  .welcome-content {
+    padding: 16px 4px;
+  }
+  .welcome-content h1 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .welcome-content p {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .welcome-sidebox {
+    padding: 10px 4px;
+    margin-top: 12px;
+    border-radius: 8px;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+  .welcome-sidebox h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .welcome-sidebox ul {
+    font-size: 0.95rem;
   }
 }

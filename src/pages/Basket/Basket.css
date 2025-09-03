@@ -1,0 +1,324 @@
+/* =========================
+   Tokens
+========================= */
+:root{
+  --bg:#f8fafc;
+  --panel:#fff;
+  --ink:#1a2947;
+  --muted:#7b869d;
+  --border:#f0f0f0;
+  --border-2:#e3e8f0;
+  --accent-1:#1eb6ff;
+  --accent-2:#a259ff;
+  --shadow: 0 4px 24px rgba(44,101,144,0.10);
+  --radius:18px;
+}
+
+/* =========================
+   Page
+========================= */
+.basket {
+  padding: 80px 0 24px 0; /* espace sous navbar fixe */
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.basket-title {
+  margin: 0 0 20px clamp(16px, 6vw, 80px);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: .2px;
+}
+
+.basket-content {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) 340px;
+  gap: 32px;
+  justify-content: center;
+  align-items: start;
+  padding: 0 clamp(12px, 3vw, 24px);
+}
+
+/* =========================
+   Tableau (liste d’articles)
+========================= */
+.basket-table {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px 0;
+  width: 100%;
+  border: 1px solid var(--border);
+}
+
+.basket-table-header {
+  font-size: 1.08rem;
+  font-weight: 800;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.basket-row {
+  display: grid;
+  grid-template-columns: 2fr auto 1fr auto; /* item | qty | total | remove */
+  align-items: center;
+  gap: 18px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  transition: background .2s;
+}
+.basket-row:hover { background: #f6f8fa; }
+.basket-row:last-child { border-bottom: 0; }
+
+.basket-item-info {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.basket-item-info img {
+  width: 64px; height: 64px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f7f8fa;
+  border: 1px solid var(--border-2);
+  box-shadow: 0 2px 8px #1eb6ff0a;
+}
+.basket-item-name {
+  font-size: 1.04rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+  color: var(--ink);
+  word-break: break-word;
+}
+.basket-item-price {
+  color: var(--muted);
+  font-size: .98rem;
+}
+
+/* Quantité */
+.basket-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+}
+.basket-qty button {
+  width: 36px; height: 36px; /* hit target 44px avec padding autour */
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .2s, border .2s, transform .06s ease-in;
+  color: var(--ink);
+}
+.basket-qty button:hover { background: #f0f0f0; border-color: var(--accent-1); }
+.basket-qty button:active { transform: translateY(1px); }
+.basket-qty span { min-width: 1.5ch; text-align: center; }
+
+/* Total ligne */
+.basket-item-total {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--ink);
+  justify-self: end;
+}
+
+/* Retirer */
+.basket-remove {
+  background: none;
+  border: none;
+  color: var(--accent-2);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: .98rem;
+  transition: color .2s, transform .06s ease-in;
+  justify-self: end;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.basket-remove:hover { color: var(--accent-1); text-decoration: underline; }
+.basket-remove:active { transform: translateY(1px); }
+
+.basket-empty {
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+/* =========================
+   Résumé
+========================= */
+.basket-summary {
+  position: sticky; top: 84px; /* reste visible au scroll en desktop */
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  width: 100%;
+  min-width: 280px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid var(--border);
+}
+
+.basket-summary h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin: 0 0 4px 0;
+  color: var(--ink);
+}
+
+.basket-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.08rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+/* Bouton commander */
+.basket-order-btn {
+  background: linear-gradient(90deg, var(--accent-1) 0%, var(--accent-2) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 0;
+  font-size: 1.06rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: filter .15s, box-shadow .2s, transform .06s ease-in;
+  box-shadow: 0 2px 8px #1eb6ff1a;
+}
+.basket-order-btn:hover { filter: brightness(1.03); box-shadow: 0 6px 18px #1eb6ff22; }
+.basket-order-btn:active { transform: translateY(1px); }
+
+/* Bouton vider */
+.basket-clear-btn {
+  background: #fff;
+  color: #222;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, border .2s, transform .06s ease-in;
+}
+.basket-clear-btn:hover { background: #f0f0f0; border-color: var(--accent-2); }
+.basket-clear-btn:active { transform: translateY(1px); }
+
+/* Désactive visuellement le bouton Commander si le panier est vide
+   (ton JSX met onClick à null — on renforce côté UX) */
+.basket-table + .basket-summary:has(+ *) .basket-order-btn:disabled,
+.basket-order-btn[aria-disabled="true"]{
+  opacity: .6; cursor: not-allowed; filter: grayscale(.2);
+}
+
+/* =========================
+   Responsive
+========================= */
+
+/* <= 1100px : grille plus souple */
+@media (max-width: 1100px){
+  .basket-content{
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+}
+
+/* <= 900px : pile en colonne, résumé sous la liste */
+@media (max-width: 900px){
+  .basket-title {
+    margin: 8px 0 12px 16px;
+    font-size: 1.4rem;
+  }
+  .basket-content{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .basket-summary{
+    position: static; top: auto;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .basket-row{
+    grid-template-columns: 1fr; /* carte empilée */
+    gap: 10px;
+    padding: 12px 12px;
+  }
+  .basket-item-info{
+    grid-template-columns: 56px 1fr;
+  }
+  .basket-item-info img{ width: 56px; height: 56px; }
+  .basket-item-total{
+    justify-self: start;
+    background: #f6f8ff;
+    border: 1px solid #eaeefe;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+  .basket-remove{
+    justify-self: start;
+    padding: 6px 0;
+  }
+}
+
+/* <= 600px : densité compacte, zones tactiles */
+@media (max-width: 600px){
+  .basket { padding-top: 72px; margin-top: 30px; }
+  .basket-content{ padding: 0 10px; gap: 12px; }
+
+  .basket-table { padding: 8px 0; }
+  .basket-table-header{ padding: 10px 12px; font-size: 1rem; }
+
+  .basket-row{ font-size: .98rem; border-radius: 12px; border: 1px solid var(--border); }
+
+  .basket-qty button{
+    width: 40px; height: 40px; border-radius: 12px; font-size: 1.1rem;
+  }
+
+  .basket-summary{ padding: 16px 14px; }
+  .basket-summary-row{ font-size: 1rem; }
+  .basket-order-btn{ padding: 12px 0; font-size: 1.02rem; }
+  .basket-clear-btn{ padding: 10px 0; font-size: 1rem; }
+}
+
+/* <= 360px : ultra-compact */
+@media (max-width: 360px){
+  .basket-item-info{
+    grid-template-columns: 48px 1fr;
+  }
+  .basket-item-info img{ width: 48px; height: 48px; }
+  .basket-qty button{ width: 36px; height: 36px; }
+}
+
+/* =========================
+   Dark mode auto
+========================= */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1217;
+    --panel:#161a21;
+    --ink:#e9eef8;
+    --muted:#a7b0c6;
+    --border:#222733;
+    --border-2:#2b3240;
+    --shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  .basket-row:hover { background: #1a1f27; }
+  .basket-item-info img{ background:#1b2230; border-color:#263043; }
+  .basket-remove:hover{ color: var(--accent-1); }
+}
